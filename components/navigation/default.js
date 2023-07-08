@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 const navigation = [
     { name: 'Dashboard', href: '/dashboard', current: true },
-    { name: 'Transaksi', href: '#', current: false },
+    { name: 'Transaksi', href: '/transaksi', current: false },
 ]
 
 function classNames(...classes) {

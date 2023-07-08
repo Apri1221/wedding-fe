@@ -5,22 +5,6 @@ import PocketBase from 'pocketbase';
 import { useRouter } from "next/router";
 
 
-/**
- * 
- * dummy data
- */
-const products = [
-    {
-        id: 1,
-        name: 'Basic Tee',
-        href: 'dashboard/draft/1',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
-        imageAlt: "Front of men's Basic Tee in black.",
-        updatedAt: 'Edited 16 Oktober 2022'
-    },
-    // More products...
-]
-
 
 export default function Dashboard() {
     const [listDraft, setListDraft] = useState([])
@@ -29,9 +13,12 @@ export default function Dashboard() {
     const router = useRouter()
 
     useEffect(() => {
-
         // initiate data
         if (listDraft.length > 0) return
+        initData();
+    });
+
+    const initData = () => {
         pb.collection('drafts').getFullList(200, {
             sort: '-created',
         }).then(async (resultList) => {
@@ -47,30 +34,27 @@ export default function Dashboard() {
                 eTemp['id_template'] = data[0]['expand']['id_template']['id']
                 eTemp['preview'] = data[0]['expand']['id_template']['preview']
                 listTemp.push(eTemp)
-                // console.log(listTemp)
             }
             setListDraft(listTemp)
         });
-    });
-
+    }
 
     const onPublishItem = (id) => {
         let data = listDraft.filter(e => e.id === id)[0]
         data['is_publish'] = true
-        pb.collection('drafts').update(id, data);
+        pb.collection('drafts').update(id, data).then(() => initData())
     }
 
     const onDeleteItem = (id) => {
-        pb.collection('drafts').delete(id);
-        router.reload()
+        pb.collection('drafts').delete(id).then(() => initData());
     }
 
     return (
-        <div className="p-8 md:px-32">
-            <div className="grid grid-cols-3 gap-4">
+        <div className="p-8 md:px-32 md:mx-16">
+            <div className="grid grid-cols-3 gap-4 mb-12">
                 <div className="col-span-2">
                     <h1 className="font-poppins text-3xl font-2xl">
-                        Daftar cerita cintamu
+                        Daftar Acara
                     </h1>
                 </div>
             </div>
@@ -83,7 +67,7 @@ export default function Dashboard() {
                         </h6>
                         <p className="text-gray-500">Klik + untuk membuat undangan baru</p>
                     </div>) :
-                    (<div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3">
+                    (<div className="mt-6 gap-y-8 gap-x-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
                         {listDraft.map((draft, index) => (
                             <CardDefault
                                 key={index}
@@ -93,6 +77,7 @@ export default function Dashboard() {
                                 imageSrc={`${api_backend}/api/files/templates/${draft.id_template}/${draft.preview}`}
                                 imageAlt={draft.slug}
                                 updatedAt={draft.updated}
+                                isPublish={draft.is_publish}
                                 onDeleteItem={onDeleteItem}
                                 onPublishItem={onPublishItem}
                             />

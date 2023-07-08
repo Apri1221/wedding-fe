@@ -21,7 +21,7 @@ export default function CarouselCard({ selectedSection, setSelectedTemplateProps
         let listCarouselTemp = [...listCarousel.map(e => ({...e, selected : false}))]
         listCarouselTemp[index].selected = true
         setListCarousel(listCarouselTemp)
-        setSelectedTemplateProps(listCarouselTemp[index])
+        setSelectedTemplateProps(listCarouselTemp[index].id)
     }
 
     return (

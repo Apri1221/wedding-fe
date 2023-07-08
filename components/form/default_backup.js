@@ -32,13 +32,13 @@ export default function FormDefault({ isEdit = true, isDark = false, categorySec
         onChangeDataSection(tempDataSection)
     }
 
-    const setSelectedTemplate = (id_template) => {
+    const setSelectedTemplate = (template) => {
         pb.collection('inputs').getFullList(200, {
-            filter: `id_template = "${id_template}"`,
+            filter: `id_template = "${template.id}"`,
         }).then(resultList => {
             // console.log(resultList)
             let tempDataSection = {...selected};
-            tempDataSection.data = resultList.map((e,index) => ({ ...e, value: tempDataSection.data && tempDataSection.data[index] && e.id === tempDataSection.data[index].id ? tempDataSection.data[index].value : '', image: null }))
+            tempDataSection.data = resultList.map(e => ({ ...e, value: '', image: null }))
             onChangeDataSection(tempDataSection)
         });
     }
@@ -67,7 +67,7 @@ export default function FormDefault({ isEdit = true, isDark = false, categorySec
 
     return (
         <div className='md:mx-16 shadow-inner rounded p-4 m-4' key={indexSection}>
-            {categorySection.length > 0 && selected && <Listbox value={itemSection.section} onChange={(data) => { setSelected(data); }}>
+            {categorySection.length > 0 && selected && <Listbox value={itemSection.section} onChange={(data) => { setSelected(data) }}>
                 <div className="relative mt-1">
                     <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                         <span className="block truncate">{selected.name}</span>

@@ -1,0 +1,153 @@
+#container {
+    width: 400px;
+    height: 100vh;
+    position: absolute;
+    box-shadow: 0px 0px 25px -8px rgba(53, 53, 53, 0.82);
+    overflow: hidden;
+}
+
+.pageContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    font-family: "Oswald", sans-serif;
+    text-align: center;
+    font-size: 37px;
+    font-weight: bold;
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    padding: 0vh 13px;
+    padding-top: 7vh;
+}
+
+#page0 {
+    background: rgb(255, 255, 255);
+}
+
+#page1 {
+    background-image: linear-gradient(to right, #670185 0%, #430053 100%);
+}
+
+#page2 {
+    background-image: linear-gradient(to right, #ff2c2c 0%, #b50031 100%);
+}
+
+.button {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-family: "Oswald", sans-serif;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.button:focus {
+    outline: 0;
+}
+
+.img {
+    width: 43vh;
+    margin-left: 15px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    color: rgb(255, 255, 255);
+    font-family: "Roboto", sans-serif;
+    font-size: 19px;
+    padding: 0px 31px;
+}
+
+#header0 {
+    color: #000;
+}
+
+#header1 {
+    color: rgb(255, 255, 255);
+}
+
+#header2 {
+    color: #fff;
+}
+
+.skip {
+    font-weight: 400;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 48px;
+    height: 30vh;
+}
+
+.contentL1 {
+    color: rgb(0, 0, 0);
+    font-family: monospace;
+    font-weight: 100;
+    text-align: left;
+    letter-spacing: -2px;
+    line-height: 18px;
+    opacity: 0.3;
+}
+
+.contentL2 {
+    color: #000;
+    font-family: "Oswald", sans-serif;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.contentL3 {
+    color: #000;
+    font-family: "Roboto", sans-serif;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 100;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+    opacity: 0.5;
+}
+
+.text0 {
+    color: #000;
+}
+
+.text1 {
+    color: #fd5888;
+}
+
+.text2 {
+    color: #fff;
+}
+
+.button0 {
+    color: #000;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.button1 {
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.button2 {
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+@media only screen and (max-width: 500px) {
+    #container {
+        width: 100%;
+    }
+}
